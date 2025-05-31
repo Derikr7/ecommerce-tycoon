@@ -1,0 +1,136 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5iuy8ukomsns"]
+
+[ext_resource type="Texture2D" uid="uid://leq6kchprsgj" path="res://Assets/parede.png" id="1_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://cyt2ydjgq2icy" path="res://Assets/Monitor_2D.png" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://dteuxthwaj6s1" path="res://Scenes/tela_monitor.gd" id="3_hptm8"]
+[ext_resource type="Texture2D" uid="uid://dtwvge3y84vxa" path="res://Assets/wallhaven-6d95gl.jpg" id="3_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://c1n8oavetg434" path="res://Assets/firefox.png" id="4_kry3j"]
+[ext_resource type="Script" uid="uid://bxs46dcie8itx" path="res://Scenes/firefox.gd" id="5_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://d4hwkt5gtovxv" path="res://Assets/browser.svg" id="6_hptm8"]
+[ext_resource type="Texture2D" uid="uid://dvv4h06qxjh8f" path="res://Assets/window-minimize-symbolic.svg" id="7_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://cistnfh2xl64d" path="res://Assets/window-maximize-symbolic.svg" id="8_6iyac"]
+[ext_resource type="Texture2D" uid="uid://du6yq3ix8550h" path="res://Assets/window-close-symbolic.svg" id="9_fdnlq"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Scene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Parede" type="TextureRect" parent="Scene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bo1nx")
+
+[node name="monitor" type="TextureRect" parent="Scene"]
+custom_minimum_size = Vector2(1000, 700)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -600.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_8gbba")
+expand_mode = 1
+
+[node name="TelaMonitor" type="Panel" parent="Scene/monitor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_hptm8")
+
+[node name="wallpaper" type="TextureRect" parent="Scene/monitor/TelaMonitor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_jjvhh")
+expand_mode = 1
+
+[node name="Icones" type="VBoxContainer" parent="Scene/monitor/TelaMonitor"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 65.0
+alignment = 1
+
+[node name="Firefox" type="TextureButton" parent="Scene/monitor/TelaMonitor/Icones"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_kry3j")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_ynf5e")
+
+[node name="JanelaNavegador" type="Panel" parent="Scene/monitor/TelaMonitor"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Browser" type="TextureRect" parent="Scene/monitor/TelaMonitor/JanelaNavegador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_hptm8")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scene/monitor/TelaMonitor/JanelaNavegador"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 20.0
+grow_horizontal = 0
+
+[node name="minimizar" type="TextureButton" parent="Scene/monitor/TelaMonitor/JanelaNavegador/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_d1ilt")
+
+[node name="maximizar" type="TextureButton" parent="Scene/monitor/TelaMonitor/JanelaNavegador/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("8_6iyac")
+
+[node name="fechar" type="TextureButton" parent="Scene/monitor/TelaMonitor/JanelaNavegador/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("9_fdnlq")
+
+[connection signal="pressed" from="Scene/monitor/TelaMonitor/Icones/Firefox" to="Scene/monitor/TelaMonitor" method="_on_firefox_pressed"]

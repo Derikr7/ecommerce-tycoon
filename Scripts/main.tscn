@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5iuy8ukomsns"]
+
+[ext_resource type="Script" uid="uid://df4qacgjbnocf" path="res://Scripts/main.gd" id="1_ix4gu"]
+[ext_resource type="PackedScene" uid="uid://cv1nmkvtnh0ki" path="res://pc.tscn" id="2_8bkqw"]
+[ext_resource type="PackedScene" uid="uid://copw803vismdr" path="res://loja.tscn" id="5_aa03v"]
+[ext_resource type="Texture2D" uid="uid://dxo58ctf7hbby" path="res://Assets/7630510.png" id="13_6mr8m"]
+[ext_resource type="Texture2D" uid="uid://b0yruxn8l0ame" path="res://Assets/186239.png" id="14_8obxp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_070mw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ff8w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmhbr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofh3u"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ix4gu")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_070mw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="HSeparator" type="HSeparator" parent="UI/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8ff8w")
+
+[node name="Button" type="Button" parent="UI/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(65, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PC"
+icon_alignment = 1
+
+[node name="Panel2" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="UI_Grid" type="HBoxContainer" parent="UI/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="HSeparator" type="HSeparator" parent="UI/Panel2/UI_Grid"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xmhbr")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel2/UI_Grid"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_6mr8m")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UI/Panel2/UI_Grid"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "100.0"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/Panel2/UI_Grid"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ofh3u")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Panel2/UI_Grid"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("14_8obxp")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="UI/Panel2/UI_Grid"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Loja" parent="Control" instance=ExtResource("5_aa03v")]
+
+[node name="PC" parent="Control" instance=ExtResource("2_8bkqw")]
+
+[connection signal="pressed" from="UI/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
